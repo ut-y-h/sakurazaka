@@ -34,9 +34,9 @@ body {
     radial-gradient(120% 60% at 50% -10%, #2a1d3a 0%, transparent 60%),
     var(--night);
   color: var(--ink); font-family: var(--body); font-size: 22px; line-height: 1.4;
-  padding-inline: 20px; padding-block: clamp(10px, 2dvh, 20px); min-height: 100%; margin: 0;
+  padding-inline: 20px; padding-block: clamp(10px, 2.5dvh, 28px); min-height: 100%; margin: 0; display: flex; flex-direction: column;
 }
-main { max-width: 540px; margin: 0 auto; display: grid; gap: var(--gap); }
+main { width: 100%; max-width: 540px; max-height: 900px; margin: 0 auto; flex: 1; display: flex; flex-direction: column; gap: var(--gap); }
 
 header { display: grid; gap: 2px; text-align: center; }
 h1 {
@@ -53,14 +53,15 @@ h1 span { display: block; font-size: min(17px, 2.6dvh); color: var(--sakura); le
 }
 @keyframes tw { 50% { opacity: .35; } }
 
-form { display: grid; gap: var(--gap); }
-.field { display: grid; gap: 2px; }
+form { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; gap: var(--gap); }
+.field { display: grid; gap: clamp(2px, .8dvh, 8px); }
 .q { font-size: min(20px, 3dvh); font-weight: 700; color: var(--ink-soft); letter-spacing: .06em; }
 input[type="text"], input[type="email"] {
   width: 100%; font: inherit; font-size: 24px; font-weight: 500; padding: 4px 16px; height: clamp(48px, 7.6dvh, 62px);
   border: 2px solid var(--line); border-radius: 14px; background: var(--field); color: var(--ink);
   transition: border-color .15s, box-shadow .15s;
 }
+input::placeholder { color: #7d7290; opacity: 1; }
 input[type="text"]:focus, input[type="email"]:focus {
   outline: none; border-color: var(--sakura); box-shadow: 0 0 0 4px rgba(255,158,196,.22);
 }
@@ -101,12 +102,12 @@ input[type="text"]:focus, input[type="email"]:focus {
   <form id="entry" novalidate>
     <div class="field" id="f-title">
       <label class="q" for="title">タイトル</label>
-      <input type="text" id="title" autocomplete="off" maxlength="50">
+      <input type="text" id="title" autocomplete="off" maxlength="50" placeholder="例）桜色の坂道">
       <p class="err" id="e-title" hidden></p>
     </div>
     <div class="field" id="f-name">
       <label class="q" for="name">お名前</label>
-      <input type="text" id="name" autocomplete="name" maxlength="40">
+      <input type="text" id="name" autocomplete="name" maxlength="40" placeholder="例）渋谷 花子">
       <p class="err" id="e-name" hidden></p>
     </div>
     <div class="field" id="f-photo">
@@ -121,7 +122,7 @@ input[type="text"]:focus, input[type="email"]:focus {
     </div>
     <div class="field" id="f-email">
       <label class="q" for="email">メールアドレス</label>
-      <input type="email" id="email" autocomplete="email" inputmode="email">
+      <input type="email" id="email" autocomplete="email" inputmode="email" placeholder="例）hanako@example.com">
       <p class="err" id="e-email" hidden></p>
     </div>
     <button class="btn" type="submit">応募する</button>
